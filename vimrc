@@ -12,9 +12,6 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
-" scss语法解析
-Plugin 'cakebaker/scss-syntax.vim'
-
 " 加入NERDTree
 Plugin 'scrooloose/nerdtree'
 
@@ -59,8 +56,17 @@ let g:ycm_complete_in_comments = 1
 let g:ycm_complete_in_strings = 1
 "注释和字符串中的文字也会被收入补全
 let g:ycm_collect_identifiers_from_comments_and_strings = 0
+let g:ycm_semantic_triggers =  {
+            \ 'c,cpp,python,java,go,erlang,perl': ['re!\w{2}'],
+            \ }
+let g:ycm_filetype_whitelist = { 
+            \ "c":1,
+            \ "cpp":1, 
+            \ "cc":1, 
+            \ }
 
-" 私人配置
+
+" 私人配置v
 echo "(>^.^<)"
 set ls=2
 
@@ -125,6 +131,9 @@ autocmd FileType scss set iskeyword+=-
 autocmd FileType html,css,scss,xml set sw=2
 autocmd FileType html,css,scss,xml set ts=2
 autocmd FileType html,css,scss,xml set sts=2
+autocmd FileType asm set sw=8 | set ts=8 | set sts=8
+"autocmd FileType asm set ts=8
+"autocmd FileType asm set sts=8
 
 "设置制表符、行尾空格、行结束回显
 set list listchars=eol:¬,tab:▸\ ,trail:.,
