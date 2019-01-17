@@ -18,6 +18,9 @@ Plugin 'scrooloose/nerdtree'
 " 自动补全
 Plugin 'Valloric/YouCompleteMe'
 
+" 头文件/实现文件切换
+Plugin 'vim-scripts/a.vim'
+nnoremap <leader>a :A<CR>
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -40,16 +43,19 @@ map <F1> :NERDTree<CR>
 " 自动补全配置
 set completeopt=longest,menu	"让Vim的补全菜单行为与一般IDE一致(参考VimTip1228)
 autocmd InsertLeave * if pumvisible() == 0|pclose|endif	"离开插入模式后自动关闭预览窗口
-"inoremap <expr> <CR>       pumvisible() ? "\<C-y>" : "\<CR>"	"回车即选中当前项
-let g:ycm_confirm_extra_conf=0 "关闭加载.ycm_extra_conf.py提示
-let g:ycm_collect_identifiers_from_tags_files=1	" 开启 YCM 基于标签引擎
-let g:ycm_min_num_of_chars_for_completion=2	" 从第2个键入字符就开始罗列匹配项
-let g:ycm_cache_omnifunc=0	" 禁止缓存匹配项,每次都重新生成匹配项
-let g:ycm_seed_identifiers_with_syntax=1	" 语法关键字补全
-nnoremap <F2> :YcmForceCompileAndDiagnostics<CR>	"force recomile with syntastic
-"nnoremap <leader>lo :lopen<CR>	"open locationlist
-"nnoremap <leader>lc :lclose<CR>	"close locationlist
-inoremap <leader><leader> <C-x><C-o>
+let g:ycm_error_symbol = '✗'   "设置错误标志
+let g:ycm_warning_symbol = '⚠' "设置警告标志
+let g:ycm_confirm_extra_conf = 0 "关闭加载.ycm_extra_conf.py提示
+let g:ycm_collect_identifiers_from_tags_files = 1 " 开启 YCM 基于标签引擎
+let g:ycm_min_num_of_chars_for_completion = 2 " 从第2个键入字符就开始罗列匹配项
+let g:ycm_cache_omnifunc = 1
+let g:ycm_seed_identifiers_with_syntax = 1    " 语法关键字补全
+let g:ycm_add_preview_to_completeopt = 0      "关闭补全预览
+let g:ycm_open_loclist_on_ycm_diags = 0
+nnoremap <leader>d :YcmDiag<CR>   "产生错误列表 
+nnoremap <leader>lo :lopen<CR>    "打开错误列表
+nnoremap <leader>lc :lclose<CR>   "关闭错误列表
+nnoremap <leader>jd :YcmCompleter GoTo<CR> "跳转到定义
 "在注释输入中也能补全
 let g:ycm_complete_in_comments = 1
 "在字符串输入中也能补全
@@ -57,14 +63,14 @@ let g:ycm_complete_in_strings = 1
 "注释和字符串中的文字也会被收入补全
 let g:ycm_collect_identifiers_from_comments_and_strings = 0
 let g:ycm_semantic_triggers =  {
-            \ 'c,cpp,python,java,go,erlang,perl': ['re!\w{2}'],
+            \ 'c,cpp,python': ['re!\w{2}'],
             \ }
 let g:ycm_filetype_whitelist = { 
             \ "c":1,
             \ "cpp":1, 
             \ "cc":1, 
             \ }
-
+let g:ycm_key_list_select_completion = ['<TAB>', '<Down>']
 
 " 私人配置v
 echo "(>^.^<)"
