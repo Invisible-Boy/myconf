@@ -20,6 +20,10 @@ Plugin 'Valloric/YouCompleteMe'
 
 " 头文件/实现文件切换
 Plugin 'vim-scripts/a.vim'
+
+" go插件
+Plugin 'fatih/vim-go'
+
 nnoremap <leader>a :A<CR>
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -63,14 +67,26 @@ let g:ycm_complete_in_strings = 1
 "注释和字符串中的文字也会被收入补全
 let g:ycm_collect_identifiers_from_comments_and_strings = 0
 let g:ycm_semantic_triggers =  {
-            \ 'c,cpp,python': ['re!\w{2}'],
+            \ 'c,cpp,hpp,go': ['re!\w{2}'],
             \ }
 let g:ycm_filetype_whitelist = { 
             \ "c":1,
             \ "cpp":1, 
+            \ "hpp":1, 
             \ "cc":1, 
+            \ "go":1, 
             \ }
 let g:ycm_key_list_select_completion = ['<TAB>', '<Down>']
+let g:ycm_autoclose_preview_window_after_completion = 1
+
+" 配置vim-go
+" 禁止vim-go在创建文件时自动填充内容
+let g:go_template_autocreate = 0
+" 避免vim-go保存时破坏折叠
+let g:go_fmt_experimental = 1
+autocmd BufWritePre *.go :GoImports
+nnoremap <leader>r :w<CR>:GoRun<CR>
+nnoremap <leader>b :w<CR>:GoBuild<CR>
 
 " 私人配置v
 echo "(>^.^<)"
@@ -129,17 +145,12 @@ set smartindent
 set sw=4
 set ts=4
 set sts=4
-"autocmd FileType javascript,python,php,c,java,shell,bash,vim,ruby,cpp,json set sw=4
-"autocmd FileType javascript,python,php,c,java,shell,bash,vim,ruby,cpp,json set ts=4
-"autocmd FileType javascript,python,php,c,java,shell,bash,vim,ruby,cpp,json set sts=4
 
 autocmd FileType scss set iskeyword+=-
 autocmd FileType html,css,scss,xml set sw=2
 autocmd FileType html,css,scss,xml set ts=2
 autocmd FileType html,css,scss,xml set sts=2
 autocmd FileType asm set sw=8 | set ts=8 | set sts=8
-"autocmd FileType asm set ts=8
-"autocmd FileType asm set sts=8
 
 "设置制表符、行尾空格、行结束回显
 set list listchars=eol:¬,tab:▸\ ,trail:.,
