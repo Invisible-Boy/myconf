@@ -13,3 +13,6 @@ export MYTEMP
 export CODE
 alias rm='rm -i'
 alias g++='g++ -std=c++11'
+
+# git log的简介表达
+alias lg="git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev"
