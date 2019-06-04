@@ -24,8 +24,12 @@ Plugin 'vim-scripts/a.vim'
 " go插件
 Plugin 'fatih/vim-go'
 
-" thrift syntax color
+" thrift 高亮
 Plugin 'solarnz/thrift.vim'
+
+" 和tmux共享剪切板
+Plugin 'tmux-plugins/vim-tmux-focus-events'
+Plugin 'roxma/vim-tmux-clipboard'
 
 nnoremap <leader>a :A<CR>
 " All of your Plugins must be added before the following line
@@ -90,9 +94,6 @@ let g:go_fmt_experimental = 1
 autocmd BufWritePre *.go :GoImports
 nnoremap <leader>r :w<CR>:GoRun<CR>
 nnoremap <leader>b :w<CR>:GoBuild<CR>
-map <leader>[ :cnext<CR>
-map <leader>] :cprevious<CR>
-nnoremap <leader>a :cclose<CR>
 
 " 私人配置v
 echo "(>^.^<)"
