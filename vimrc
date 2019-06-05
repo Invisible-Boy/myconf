@@ -48,7 +48,7 @@ filetype plugin on
 " Put your non-Plugin stuff after this line
 
 " set NERDTree
-map <F1> :NERDTree<CR>
+nnoremap <leader>t :NERDTree<CR>
 
 " 配置YCM
 " 自动补全配置
@@ -94,6 +94,9 @@ let g:go_fmt_experimental = 1
 autocmd BufWritePre *.go :GoImports
 nnoremap <leader>r :w<CR>:GoRun<CR>
 nnoremap <leader>b :w<CR>:GoBuild<CR>
+map <leader>[ :cnext<CR>
+map <leader>] :cprevious<CR>
+nnoremap <leader>a :cclose<CR>
 
 " 私人配置v
 echo "(>^.^<)"
