@@ -68,7 +68,11 @@ ZSH_THEME="steeef"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git extract zsh-syntax-highlighting bat)
+plugins=(git 
+         extract
+         zsh-syntax-highlighting
+         autojump
+        )
 
 source $ZSH/oh-my-zsh.sh
 
@@ -102,7 +106,7 @@ export LSCOLORS=Exfxaxdxcxegedabagacad
 export GOPATH="/Users/zhangyifan/go"
 export GOBIN="${GOPATH}/bin"
 export GOROOT="/usr/local/opt/go/libexec"
-export PATH="${PATH}:${GOBIN}"
+export PATH="${PATH}:${GOBIN}:${GOROOT}/bin"
 
 alias rm='rm -i'
 alias g++='g++ -std=c++11'

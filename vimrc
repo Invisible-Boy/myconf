@@ -1,8 +1,9 @@
+set encoding=utf-8
 " 配置Vnudle
 "no compatible for vi
 set nocompatible
-filetype off                  " required
-
+" required
+filetype off
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
