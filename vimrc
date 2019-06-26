@@ -87,6 +87,7 @@ let g:ycm_filetype_whitelist = {
 let g:ycm_key_list_select_completion = ['<TAB>', '<Down>']
 let g:ycm_autoclose_preview_window_after_completion = 1
 
+let g:TerminusFocusReporting=0
 " 配置vim-go
 " 禁止vim-go在创建文件时自动填充内容
 let g:go_template_autocreate = 0
@@ -98,6 +99,8 @@ nnoremap <leader>b :w<CR>:GoBuild<CR>
 map <leader>[ :cnext<CR>
 map <leader>] :cprevious<CR>
 nnoremap <leader>a :cclose<CR>
+let g:go_def_mode = 'godef'
+autocmd filetype go nnoremap <leader>jd :GoDef<CR> "跳转到定义
 
 " 私人配置v
 echo "(>^.^<)"
