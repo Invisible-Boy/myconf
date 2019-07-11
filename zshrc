@@ -110,3 +110,4 @@ export PATH="${PATH}:${GOBIN}:${GOROOT}/bin"
 
 alias rm='rm -i'
 alias g++='g++ -std=c++11'
+alias lg="git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev"
