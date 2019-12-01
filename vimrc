@@ -160,6 +160,7 @@ set sw=4
 set ts=4
 set sts=4
 
+autocmd FileType make set noexpandtab
 autocmd FileType scss set iskeyword+=-
 autocmd FileType html,css,scss,xml set sw=2
 autocmd FileType html,css,scss,xml set ts=2
