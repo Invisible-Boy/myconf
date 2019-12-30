@@ -4,6 +4,7 @@ set encoding=utf-8
 set nocompatible
 " required
 filetype off
+
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -15,43 +16,10 @@ Plugin 'VundleVim/Vundle.vim'
 
 " 加入NERDTree
 Plugin 'scrooloose/nerdtree'
+map <F1> :NERDTree<CR>
 
 " 自动补全
 Plugin 'Valloric/YouCompleteMe'
-
-" 头文件/实现文件切换
-Plugin 'vim-scripts/a.vim'
-
-" go插件
-Plugin 'fatih/vim-go'
-
-" thrift 高亮
-Plugin 'solarnz/thrift.vim'
-
-" 和tmux共享剪切板
-Plugin 'tmux-plugins/vim-tmux-focus-events'
-Plugin 'roxma/vim-tmux-clipboard'
-
-nnoremap <leader>a :A<CR>
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
-
-" set NERDTree
-nnoremap <leader>t :NERDTree<CR>
-
-" 配置YCM
 " 自动补全配置
 set completeopt=longest,menu	"让Vim的补全菜单行为与一般IDE一致(参考VimTip1228)
 autocmd InsertLeave * if pumvisible() == 0|pclose|endif	"离开插入模式后自动关闭预览窗口
@@ -87,8 +55,12 @@ let g:ycm_filetype_whitelist = {
 let g:ycm_key_list_select_completion = ['<TAB>', '<Down>']
 let g:ycm_autoclose_preview_window_after_completion = 1
 
-let g:TerminusFocusReporting=0
-" 配置vim-go
+" 头文件/实现文件切换
+Plugin 'micbou/a.vim'
+nnoremap <leader>a :A<CR>
+
+" go插件
+Plugin 'fatih/vim-go'
 " 禁止vim-go在创建文件时自动填充内容
 let g:go_template_autocreate = 0
 " 避免vim-go保存时破坏折叠
@@ -102,13 +74,66 @@ nnoremap <leader>a :cclose<CR>
 let g:go_def_mode = 'godef'
 autocmd filetype go nnoremap <leader>jd :GoDef<CR> "跳转到定义
 
+" thrift 高亮
+Plugin 'solarnz/thrift.vim'
+
+" 和tmux共享剪切板
+Plugin 'tmux-plugins/vim-tmux-focus-events'
+Plugin 'roxma/vim-tmux-clipboard'
+
+" c++增强高亮
+Plugin 'octol/vim-cpp-enhanced-highlight'
+
+" 锁进线条
+Plugin 'yggdroot/indentline'
+
+" 大纲浏览
+Plugin 'majutsushi/tagbar'
+nmap <leader>t :TagbarToggle<CR>
+
+" 彩虹括号
+Plugin 'kien/rainbow_parentheses.vim'
+let g:rbpt_colorpairs = [
+    \ ['magenta',     'purple1'],
+    \ ['cyan',        'magenta1'],
+    \ ['green',       'slateblue1'],
+    \ ['yellow',      'cyan1'],
+    \ ['red',         'springgreen1'],
+    \ ['magenta',     'green1'],
+    \ ['cyan',        'greenyellow'],
+    \ ['green',       'yellow1'],
+    \ ['yellow',      'orange1']
+    \ ]
+let g:rbpt_max = 9
+let g:rbpt_loadcmd_toggle = 0
+au VimEnter * RainbowParenthesesToggle
+au VimEnter * RainbowParenthesesLoadRound     "()
+au VimEnter * RainbowParenthesesLoadSquare    "[]
+au VimEnter * RainbowParenthesesLoadBraces    "{}
+au VimEnter * RainbowParenthesesLoadChevrons  "<>
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
+
+
 " 私人配置v
 echo "(>^.^<)"
 set ls=2
 
 "set number and relative number
 set nu
-"set rnu
 
 "set syntax
 syntax on
@@ -160,7 +185,6 @@ set sw=4
 set ts=4
 set sts=4
 
-autocmd FileType make set noexpandtab
 autocmd FileType scss set iskeyword+=-
 autocmd FileType html,css,scss,xml set sw=2
 autocmd FileType html,css,scss,xml set ts=2
@@ -172,6 +196,9 @@ set list listchars=eol:¬,tab:▸\ ,trail:.,
 
 "自动补全
 inoremap {{ {<CR>}<ESC>ko
+inoremap ( ()<ESC>i
+inoremap [ []<ESC>i
+inoremap < <><ESC>i
 inoremap " ""<ESC>i
 inoremap ' ''<ESC>i
 
