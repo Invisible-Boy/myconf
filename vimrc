@@ -21,8 +21,8 @@ map <F1> :NERDTree<CR>
 " 自动补全
 Plugin 'Valloric/YouCompleteMe'
 " 自动补全配置
-set completeopt=longest,menu	"让Vim的补全菜单行为与一般IDE一致(参考VimTip1228)
-autocmd InsertLeave * if pumvisible() == 0|pclose|endif	"离开插入模式后自动关闭预览窗口
+set completeopt=longest,menu    "让Vim的补全菜单行为与一般IDE一致(参考VimTip1228)
+autocmd InsertLeave * if pumvisible() == 0|pclose|endif "离开插入模式后自动关闭预览窗口
 let g:ycm_error_symbol = '✗'   "设置错误标志
 let g:ycm_warning_symbol = '⚠' "设置警告标志
 let g:ycm_confirm_extra_conf = 0 "关闭加载.ycm_extra_conf.py提示
@@ -32,25 +32,25 @@ let g:ycm_cache_omnifunc = 1
 let g:ycm_seed_identifiers_with_syntax = 1    " 语法关键字补全
 let g:ycm_add_preview_to_completeopt = 0      "关闭补全预览
 let g:ycm_open_loclist_on_ycm_diags = 0
-nnoremap <leader>d :YcmDiag<CR>   "产生错误列表 
+nnoremap <leader>d :YcmDiag<CR>   "产生错误列表
 nnoremap <leader>lo :lopen<CR>    "打开错误列表
 nnoremap <leader>lc :lclose<CR>   "关闭错误列表
 nnoremap <leader>jd :YcmCompleter GoTo<CR> "跳转到定义
-"在注释输入中也能补全
+" 在注释输入中也能补全
 let g:ycm_complete_in_comments = 1
-"在字符串输入中也能补全
+" 在字符串输入中也能补全
 let g:ycm_complete_in_strings = 1
-"注释和字符串中的文字也会被收入补全
-let g:ycm_collect_identifiers_from_comments_and_strings = 0
+" 注释和字符串中的文字也会被收入补全
+let g:ycm_collect_identifiers_from_comments_and_strings = 1
+" 基于语义的补全
 let g:ycm_semantic_triggers =  {
-            \ 'c,cpp,hpp,go': ['re!\w{2}'],
+            \ 'c,cpp,go': ['re!\w{2}'],
             \ }
-let g:ycm_filetype_whitelist = { 
+" 在哪些文件中使用YCM
+let g:ycm_filetype_whitelist = {
             \ "c":1,
-            \ "cpp":1, 
-            \ "hpp":1, 
-            \ "cc":1, 
-            \ "go":1, 
+            \ "cpp":1,
+            \ "go":1,
             \ }
 let g:ycm_key_list_select_completion = ['<TAB>', '<Down>']
 let g:ycm_autoclose_preview_window_after_completion = 1
@@ -70,7 +70,7 @@ nnoremap <leader>r :w<CR>:GoRun<CR>
 nnoremap <leader>b :w<CR>:GoBuild<CR>
 map <leader>[ :cnext<CR>
 map <leader>] :cprevious<CR>
-nnoremap <leader>a :cclose<CR>
+nnoremap <leader>c :cclose<CR>
 let g:go_def_mode = 'godef'
 autocmd filetype go nnoremap <leader>jd :GoDef<CR> "跳转到定义
 
@@ -94,23 +94,22 @@ nmap <leader>t :TagbarToggle<CR>
 " 彩虹括号
 Plugin 'kien/rainbow_parentheses.vim'
 let g:rbpt_colorpairs = [
-    \ ['magenta',     'purple1'],
-    \ ['cyan',        'magenta1'],
-    \ ['green',       'slateblue1'],
-    \ ['yellow',      'cyan1'],
-    \ ['red',         'springgreen1'],
-    \ ['magenta',     'green1'],
-    \ ['cyan',        'greenyellow'],
-    \ ['green',       'yellow1'],
-    \ ['yellow',      'orange1']
-    \ ]
+            \ ['magenta',     'purple1'],
+            \ ['cyan',        'magenta1'],
+            \ ['green',       'slateblue1'],
+            \ ['yellow',      'cyan1'],
+            \ ['red',         'springgreen1'],
+            \ ['magenta',     'green1'],
+            \ ['cyan',        'greenyellow'],
+            \ ['green',       'yellow1'],
+            \ ['yellow',      'orange1']
+            \ ]
 let g:rbpt_max = 9
 let g:rbpt_loadcmd_toggle = 0
 au VimEnter * RainbowParenthesesToggle
 au VimEnter * RainbowParenthesesLoadRound     "()
 au VimEnter * RainbowParenthesesLoadSquare    "[]
 au VimEnter * RainbowParenthesesLoadBraces    "{}
-au VimEnter * RainbowParenthesesLoadChevrons  "<>
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -196,9 +195,7 @@ set list listchars=eol:¬,tab:▸\ ,trail:.,
 
 "自动补全
 inoremap {{ {<CR>}<ESC>ko
-inoremap ( ()<ESC>i
 inoremap [ []<ESC>i
-inoremap < <><ESC>i
 inoremap " ""<ESC>i
 inoremap ' ''<ESC>i
 
